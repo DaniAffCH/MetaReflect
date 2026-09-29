@@ -77,4 +77,10 @@ static_assert(!metaref::fields_are_complete(^^Derived)); // inherited x, y
 struct EmptyTag {};
 struct Tagged : EmptyTag { int v; };
 
-static_assert(main()etaref::fields_are_complete(^^Tagged)); // Derived but with an empty base class. Shoulf return true.
+static_assert(metaref::fields_are_complete(^^Tagged)); // Derived but with an empty base class. Shoulf return true.
+
+struct PrivatelyTagged : private EmptyTag { int v; };
+struct HidesData : private Point { int v; };
+
+static_assert(metaref::fields_are_complete(^^PrivatelyTagged));
+static_assert(!metaref::fields_are_complete(^^HidesData)); 
