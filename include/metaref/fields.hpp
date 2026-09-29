@@ -6,11 +6,8 @@
 
 namespace metaref {
 
-/*
-    Returns a static array containing all the non static data members of type that 1) are visible from the caller's access context and 2) have a name.
-    All inherited members are not included. The default current context is evaluated at the call place.
-*/
-
+// Returns a static array containing all the non static data members of type that 1) are visible from the caller's access context and 2) have a name.
+// All inherited members are not included. The default current context is evaluated at the call place.
 consteval std::span<const std::meta::info> fields_of(std::meta::info type, std::meta::access_context ctx = std::meta::access_context::current())
 {
     std::vector<std::meta::info> result;
