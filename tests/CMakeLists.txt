@@ -1,4 +1,9 @@
-add_executable(test_fields test_fields.cpp)
-target_link_libraries(test_fields PRIVATE metaref::metaref)
-set_target_properties(test_fields PROPERTIES CXX_EXTENSIONS OFF)
-add_test(NAME fields COMMAND test_fields)
+function(metaref_add_test name)
+    add_executable(test_${name} test_${name}.cpp)
+    target_link_libraries(test_${name} PRIVATE metaref::metaref)
+    set_target_properties(test_${name} PROPERTIES CXX_EXTENSIONS OFF)
+    add_test(NAME ${name} COMMAND test_${name})
+endfunction()
+
+metaref_add_test(fields)
+metaref_add_test(for_each_field)
