@@ -1,5 +1,6 @@
 #pragma once
 
+#include <metaref/fields.hpp>
 #include <meta>
 #include <cstddef>
 
