@@ -98,9 +98,12 @@ void test_access(){
     int outside = 0;
     metaref::for_each_field(s, [&](auto, const auto&){ ++outside; });
     int inside = s.count_from_inside();
+    int outside_unchecked = 0;
+    metaref::for_each_field<std::meta::access_context::unchecked()>(s, [&](auto, const auto&){ ++outside_unchecked; });
 
     check(outside == 1, "test_access");
     check(inside == 2, "test_access");
+    check(outside_unchecked == 2, "test_access");
 }
 
 struct WithUnion {
