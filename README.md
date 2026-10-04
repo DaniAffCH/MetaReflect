@@ -33,14 +33,19 @@ target_link_libraries(your_target PRIVATE metaref::metaref)
 
 Linking metaref::metaref adds the include path, C++26 and `-freflection`.
 
-## Why should I use metaref
+## Why MetaRef?
 
-`std::meta` gives you the primitives, but using them correctly takes more than it looks and it's easy to overlook nuances. metaref:
-- handles the edge cases: private members, anonymous unions, bit-fields, base classes, enum aliases
-- hides most of the ugly syntax: static arrays, access contexts, splices.  
-- gives you results you can use at runtime, not only inside the compiler
-- respects encapsulation by default
-- stays small: no macros, no formats, no registration
+C++26 provides static reflection through `std::meta`, but common
+operations still require verbose metaprogramming patterns.
+
+MetaRef provides small utilities for common reflection tasks:
+
+| Task | MetaRef |
+|---|---|
+| Get a type name | `metaref::name<T>()` |
+| Enumerate members | `metaref::members<T>()` |
+| Get enum name | `metaref::enum_name(value)` |
+| Enumerate enum values | `metaref::enum_values<E>()` |
 
 ## Building the tests and examples
 ```bash
