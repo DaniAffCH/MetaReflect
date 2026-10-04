@@ -1,17 +1,11 @@
 #pragma once
 
+#include <metaref/field.hpp>
 #include <metaref/fields.hpp>
 #include <meta>
 #include <cstddef>
 
 namespace metaref {
-
-
-template <std::meta::info M>
-struct field {
-    static constexpr std::string_view name = std::meta::identifier_of(M); // This can be always used 
-    static constexpr std::meta::info reflection = M; // This can be used only in a constant context
-};
 
 template <std::meta::access_context Ctx = std::meta::access_context::current(), typename T, typename F>
 void for_each_field(T& obj, F&& f){
