@@ -9,8 +9,7 @@
 // Hash every field of obj
 template <std::meta::access_context Ctx = std::meta::access_context::current(), class T>
 std::size_t hash_value(const T& obj) {
-    static_assert(metaref::fields_are_complete(^^T, Ctx),
-                  "hash_value needs every field of T, but some are not visible from the caller");
+    static_assert(metaref::fields_are_complete(^^T, Ctx), "hash_value needs every field of T, but some are not visible from the caller");
 
     std::size_t h = 0;
     metaref::for_each_field<Ctx>(obj, [&](auto, const auto& value) {
@@ -40,7 +39,6 @@ private:
     long balance;
 public:
     int id;
-
     Account(int id, long balance) : balance(balance), id(id) {}
     std::size_t hash() const { return hash_value(*this); }
 };

@@ -31,7 +31,7 @@ target_link_libraries(your_target PRIVATE metaref::metaref)
 
 Linking metaref::metaref adds the include path, C++26 and `-freflection`.
 
-# Why should I use metaref
+## Why should I use metaref
 
 `std::meta` gives you the primitives, but using them correctly takes more than it looks and it's easy to overlook nuances. metaref:
 - handles the edge cases: private members, anonymous unions, bit-fields, base classes, enum aliases
@@ -40,7 +40,7 @@ Linking metaref::metaref adds the include path, C++26 and `-freflection`.
 - respects encapsulation by default
 - stays small: no macros, no formats, no registration
 
-# Building the tests and examples
+## Building the tests and examples
 ```bash
 cmake -B build -DCMAKE_CXX_COMPILER=g++-16
 cmake --build build
