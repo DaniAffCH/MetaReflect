@@ -3,8 +3,7 @@
 #include <metaref/field.hpp>
 #include <metaref/fields.hpp>
 #include <meta>
-#include <cstddef>
-
+#include <type_traits>
 namespace metaref {
 
 template <std::meta::access_context Ctx = std::meta::access_context::current(), typename T, typename F>

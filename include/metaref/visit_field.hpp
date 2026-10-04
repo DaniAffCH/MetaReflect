@@ -5,6 +5,7 @@
 #include <meta>
 #include <string_view>
 #include <type_traits>
+#include <optional>
 
 namespace metaref {
     template <std::meta::access_context Ctx = std::meta::access_context::current(),
