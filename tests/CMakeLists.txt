@@ -7,3 +7,4 @@ endfunction()
 
 metaref_add_test(fields)
 metaref_add_test(for_each_field)
+metaref_add_test(enums)
