@@ -34,6 +34,20 @@ namespace {
 
     static_assert(metaref::enum_count<Color> == 3);
     static_assert(metaref::enum_count<Shade> == 4);
+
+    static_assert(metaref::enum_names<Color>[0] == "Green");
+    static_assert(metaref::enum_names<Shade>[1] == "crimson"); // alias included 
+    static_assert(metaref::enum_names<Shade>.size() == metaref::enum_count<Shade>);
+
+    static_assert(metaref::enum_values<Color>[0] == Green);
+    static_assert(metaref::enum_values<Shade>[0] == Shade::red);
+    static_assert(metaref::enum_values<Shade>[1] == Shade::red); // crimson has the same value
+    static_assert(metaref::enum_values<Shade>.size() == metaref::enum_count<Shade>);
+
+    static_assert(metaref::enum_contains(Shade::green));
+    static_assert(metaref::enum_contains(Shade::crimson));
+    static_assert(!metaref::enum_contains(Shade{3}));
+    static_assert(!metaref::enum_contains(Shade{6}));
 }
 
 int main(int argc, char**) {
