@@ -4,7 +4,7 @@
 #include <optional>
 #include <string_view>
 #include <type_traits>
-
+#include <cstddef>
 namespace metaref {
 
 // Returns the name of the enumerator with the same value as value. If multiple enumerators have the same value the first one wins.
@@ -34,6 +34,9 @@ constexpr std::optional<T> enum_from_name(std::string_view name){
     return std::nullopt;
 }
 
+template <typename T>
+    requires std::is_enum_v<T>
+constexpr inline std::size_t enum_count = std::meta::enumerators_of(^^T).size();
 
 
 }

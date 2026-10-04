@@ -31,6 +31,9 @@ namespace {
     static_assert(!metaref::enum_from_name<Shade>("purple").has_value());
 
     static_assert(metaref::enum_from_name<Color>("Red") == Color::Red); 
+
+    static_assert(metaref::enum_count<Color> == 3);
+    static_assert(metaref::enum_count<Shade> == 4);
 }
 
 int main(int argc, char**) {
