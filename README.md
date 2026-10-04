@@ -8,6 +8,8 @@ This library is meant to make the use of C++26 static reflection less painful.
 
 `metaref` provides a collection of STL-like utilities mostly built on top of `std::meta` with the goal of handling these cases internally and providing a simple, centralized API.
 
+Full documentation: [docs/reference.md](docs/reference.md)
+
 > Status: experimental. metaref is at a very early stage and is developed against GCC 16 with '-freflection'. The API will change.
 
 ## Quickstart
