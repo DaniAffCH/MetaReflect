@@ -322,4 +322,3 @@ The full example is in [examples/hash.cpp](../examples/hash.cpp).
 - Inherited fields are not visited.
 - The default access context remembers where it was created, so calling the same function from different places creates different instantiations. This costs some compile time.
 - On GCC, a default template argument `current()` gets the caller's context, and `for_each_field`, `visit_field` and `get_field` rely on this. I haven't found it confirmed in the standard yet (for default function arguments it is).
-- The compiler is still experimental. What I measured on it is in [gcc16-findings.md](gcc16-findings.md).
