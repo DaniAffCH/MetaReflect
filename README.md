@@ -33,19 +33,84 @@ target_link_libraries(your_target PRIVATE metaref::metaref)
 
 Linking metaref::metaref adds the include path, C++26 and `-freflection`.
 
-## Why MetaReflect?
+## What's included?
 
-C++26 provides static reflection through `std::meta`, but common
-operations still require verbose metaprogramming patterns.
+### Fields
 
-MetaReflect provides small utilities for common reflection tasks:
+* `metaref::fields_of`
+* `metaref::fields_are_complete`
+* `metaref::field`
+* `metaref::for_each_field`
+* `metaref::visit_field`
+* `metaref::get_field`
 
-| Task | MetaReflect |
-|---|---|
-| Get a type name | `metaref::name<T>()` |
-| Enumerate members | `metaref::members<T>()` |
-| Get enum name | `metaref::enum_name(value)` |
-| Enumerate enum values | `metaref::enum_values<E>()` |
+For example, `fields_are_complete` can check that reflection gives you all the fields you expect:
+
+```cpp
+static_assert(metaref::fields_are_complete(^^Point));
+```
+
+`for_each_field` handles the reflection machinery needed to associate reflected members with their values:
+
+```cpp
+metaref::for_each_field(object, [](auto field, const auto& value) {
+    // ...
+});
+```
+
+It also preserves the caller's access context instead of simply using `unchecked()`.
+
+Runtime field access is available through `visit_field` and `get_field`:
+
+```cpp
+if (auto value = metaref::get_field<int>(object, "x")) {
+    std::cout << *value << '\n';
+}
+```
+
+### Enums
+
+* `metaref::enum_name`
+* `metaref::enum_from_name`
+* `metaref::enum_count`
+* `metaref::enum_names`
+* `metaref::enum_values`
+* `metaref::enum_contains`
+
+These support sparse and negative enum values and handle aliases explicitly.
+
+```cpp
+enum class Color {
+    red = -2,
+    green = 1,
+    blue = 4
+};
+
+metaref::enum_name(Color::green);
+metaref::enum_values<Color>();
+metaref::enum_names<Color>();
+```
+
+## Writing your own utilities
+
+MetaReflect is also meant to be used as a building block for higher-level reflection utilities.
+
+For example:
+
+```cpp
+template <typename T>
+std::size_t hash_value(const T& object) {
+    static_assert(metaref::fields_are_complete(^^T));
+
+    std::size_t hash = 0;
+
+    metaref::for_each_field(object, [&](auto, const auto& value) {
+        hash_combine(hash, value);
+    });
+
+    return hash;
+}
+```
 
 ## Building the tests and examples
 ```bash
@@ -59,3 +124,8 @@ Most tests are static_asserts, so a failing test shows up as a compile error.
 ## Requirements
 - GCC 16 with -std=c++26 -freflection
 - CMake 3.25 or later
+
+## Examples
+See the [examples](examples/) directory.
+
+  
