@@ -1,4 +1,4 @@
-# MetaRef
+# MetaReflect
 
 [![CI](https://github.com/DaniAffCH/metaref/actions/workflows/ci.yml/badge.svg)](https://github.com/DaniAffCH/metaref/actions/workflows/ci.yml)
 
@@ -33,14 +33,14 @@ target_link_libraries(your_target PRIVATE metaref::metaref)
 
 Linking metaref::metaref adds the include path, C++26 and `-freflection`.
 
-## Why MetaRef?
+## Why MetaReflect?
 
 C++26 provides static reflection through `std::meta`, but common
 operations still require verbose metaprogramming patterns.
 
-MetaRef provides small utilities for common reflection tasks:
+MetaReflect provides small utilities for common reflection tasks:
 
-| Task | MetaRef |
+| Task | MetaReflect |
 |---|---|
 | Get a type name | `metaref::name<T>()` |
 | Enumerate members | `metaref::members<T>()` |
