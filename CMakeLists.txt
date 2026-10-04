@@ -24,3 +24,8 @@ if(METAREF_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+option(METAREF_BUILD_EXAMPLES "Build metaref examples" ${PROJECT_IS_TOP_LEVEL})
+if(METAREF_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
