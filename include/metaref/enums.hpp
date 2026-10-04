@@ -21,6 +21,7 @@ constexpr std::string_view enum_name(T value){
     return "";
 }
 
+// Returns the enumerator corresponding to name if it exists.
 template <typename T>
     requires std::is_enum_v<T>
 constexpr std::optional<T> enum_from_name(std::string_view name){
