@@ -13,7 +13,7 @@ struct field {
     static constexpr std::meta::info reflection = M; // This can be used only in a constant context
 };
 
-template <std::meta::access_context Ctx = std::meta::access_context::current(), class T, class F>
+template <std::meta::access_context Ctx = std::meta::access_context::current(), typename T, typename F>
 void for_each_field(T& obj, F&& f){
     using U = std::remove_cvref_t<T>;
     template for (constexpr std::meta::info member : fields_of(^^U, Ctx)) {
